@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GameHub 是免登录、无需下载、打开详情页即可玩的轻量 HTML5 小游戏平台预览。" />
+    <meta name="theme-color" content="#6157f5" />
+    <title>GameHub｜轻量 HTML5 小游戏平台</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="/" aria-label="GameHub 首页">
+          <span class="brand-mark" aria-hidden="true">G</span>
+          <span>GameHub</span>
+        </a>
+        <nav aria-label="主导航">
+          <a href="/">首页</a>
+          <a href="/games/">游戏库</a>
+          <a href="/categories/3d/">3D</a>
+          <a href="/about/">关于</a>
+        </nav>
+        <a class="header-cta" href="/games/pelican-ride/">立即体验</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">HTML5 · 免登录 · 打开即玩</p>
+          <h1>把好玩的小游戏，装进一个轻量页面。</h1>
+          <p class="hero-lead">
+            GameHub 以独立游戏详情页承载游玩体验，用清晰的发现路径、真实的游戏状态和简洁的响应式界面，让玩家在几秒内开始一局。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="/games/pelican-ride/">进入 Pelican Ride</a>
+            <a class="button secondary" href="/games/">浏览全部游戏</a>
+          </div>
+          <dl class="hero-facts" aria-label="平台特点">
+            <div><dt>游玩方式</dt><dd>详情页内直接启动</dd></div>
+            <div><dt>账号要求</dt><dd>无需注册登录</dd></div>
+            <div><dt>设备覆盖</dt><dd>桌面与移动端</dd></div>
+          </dl>
+        </div>
+        <div class="hero-art" aria-label="Pelican Ride 概念画面">
+          <div class="art-sky"><span class="sun"></span><span class="cloud cloud-one"></span><span class="cloud cloud-two"></span></div>
+          <div class="art-track">
+            <svg viewBox="0 0 520 280" role="img" aria-label="骑着鹈鹕穿过云层的插画">
+              <defs>
+                <linearGradient id="bird" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffffff" />
+                  <stop offset="1" stop-color="#dfe4ff" />
+                </linearGradient>
+                <linearGradient id="beak" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ffb35c" />
+                  <stop offset="1" stop-color="#ff765c" />
+                </linearGradient>
+              </defs>
+              <ellipse cx="260" cy="242" rx="175" ry="12" fill="#3c4180" opacity=".12" />
+              <path d="M156 166c22-53 90-72 143-43 34 19 47 51 37 82-13 39-69 60-121 43-43-14-72-48-59-82z" fill="url(#bird)" />
+              <path d="M327 123c30-15 61-8 82 11-25 13-54 16-82 5z" fill="url(#beak)" />
+              <circle cx="305" cy="113" r="5" fill="#161b38" />
+              <path d="M185 160c-18-36 5-75 46-83 29-6 54 6 68 27-40-8-77 8-114 56z" fill="#7c6cff" />
+              <path d="M213 199c12 20 36 34 64 36" fill="none" stroke="#aeb6d8" stroke-width="8" stroke-linecap="round" />
+              <path d="M260 202l-7 32m31-31l7 31" fill="none" stroke="#ff9f5a" stroke-width="7" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="art-caption"><span class="status-dot"></span> Pelican Ride · 预览演示</div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="featured-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">精选内容</p>
+            <h2 id="featured-title">从第一款游戏开始</h2>
+          </div>
+          <a class="text-link" href="/games/">查看游戏库 <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="game-grid">
+          <a class="game-card playable" href="/games/pelican-ride/">
+            <div class="cover cover-pelican">
+              <span class="cover-label">3D · 休闲骑行</span>
+              <span class="cover-badge">可预览</span>
+            </div>
+            <div class="card-body">
+              <h3>Pelican Ride</h3>
+              <p>在三维场景中轻松骑行，体验明亮的云层、节奏与躲避挑战。</p>
+              <div class="card-meta"><span>Three.js</span><span>桌面 / 移动端预览</span></div>
+              <span class="card-action">进入详情 <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+          <article class="game-card planning">
+            <div class="cover cover-classroom">
+              <span class="cover-label">观察 · 解谜</span>
+              <span class="cover-badge muted">开发中</span>
+            </div>
+            <div class="card-body">
+              <h3>Classroom Detective</h3>
+              <p>观察课堂中的行为差异，找出异常线索。当前仅登记规划状态。</p>
+              <div class="card-meta"><span>P1 规划</span><span>暂无可玩入口</span></div>
+              <span class="card-action disabled">了解计划 <span aria-hidden="true">·</span></span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section principles" aria-labelledby="principles-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">产品原则</p>
+            <h2 id="principles-title">轻量，但不牺牲真实体验</h2>
+          </div>
+        </div>
+        <div class="principle-grid">
+          <article><span class="principle-number">01</span><h3>真实状态</h3><p>已上线与开发中清晰区分，不给未发布游戏提供假的开始按钮。</p></article>
+          <article><span class="principle-number">02</span><h3>独立游玩层</h3><p>游戏在独立页面运行，不把每帧状态塞进平台页面渲染周期。</p></article>
+          <article><span class="principle-number">03</span><h3>响应式优先</h3><p>从 320px 手机到宽屏桌面，内容保持可读、可点、不横向溢出。</p></article>
+          <article><span class="principle-number">04</span><h3>可索引详情</h3><p>分享与搜索指向游戏详情页，而不是嵌入资源路径。</p></article>
+        </div>
+      </section>
+
+      <section class="next-band">
+        <div>
+          <p class="eyebrow">继续探索</p>
+          <h2>挑选一款游戏，直接开始。</h2>
+          <p>当前预览包含门户首页、游戏库、详情体验页与基础政策页。</p>
+        </div>
+        <a class="button light" href="/games/">打开游戏库</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-shell">
+        <div><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">G</span><span>GameHub</span></a><p>轻量 HTML5 小游戏平台 V1.0 预览。</p></div>
+        <nav aria-label="页脚导航"><a href="/about/">关于</a><a href="/privacy/">隐私</a><a href="/terms/">条款</a><a href="/games/">全部游戏</a></nav>
+      </div>
+    </footer>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

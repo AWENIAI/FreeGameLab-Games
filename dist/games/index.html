@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="浏览 GameHub 全部小游戏，按名称、分类与排序方式筛选。" />
+    <title>全部游戏｜GameHub</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="/" aria-label="GameHub 首页"><span class="brand-mark" aria-hidden="true">G</span><span>GameHub</span></a>
+        <nav aria-label="主导航"><a href="/">首页</a><a href="/games/">游戏库</a><a href="/categories/3d/">3D</a><a href="/about/">关于</a></nav>
+        <a class="header-cta" href="/games/pelican-ride/">立即体验</a>
+      </div>
+    </header>
+    <main id="main" class="page-shell">
+      <nav class="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>/</span><span>全部游戏</span></nav>
+      <section class="page-hero">
+        <div><p class="eyebrow">游戏库</p><h1>无需安装，选择一个小游戏直接开始。</h1><p>按名称、分类与排序方式浏览当前登记的游戏。规划中的游戏会明确标记，不提供假的可玩入口。</p></div>
+      </section>
+      <section aria-label="游戏筛选">
+        <div class="toolbar">
+          <label><span class="sr-only">搜索游戏</span><input id="game-search" type="search" placeholder="搜索游戏名称或关键词" autocomplete="off" /></label>
+          <label><span class="sr-only">分类</span><select id="game-category"><option value="all">全部分类</option><option value="3d">3D</option><option value="simulation">模拟</option><option value="casual">休闲</option><option value="puzzle">解谜</option></select></label>
+          <label><span class="sr-only">排序</span><select id="game-sort"><option value="newest">最新上线</option><option value="title">按标题</option></select></label>
+        </div>
+        <div class="game-grid" data-game-grid></div>
+        <div class="empty-state" id="empty-state"><h2>没有找到游戏</h2><p>试试清空搜索词或切换分类。</p><a class="button secondary" href="/games/">清空筛选</a></div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="footer-shell"><div><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">G</span><span>GameHub</span></a><p>轻量 HTML5 小游戏平台 V1.0 预览。</p></div><nav aria-label="页脚导航"><a href="/about/">关于</a><a href="/privacy/">隐私</a><a href="/terms/">条款</a><a href="/games/">全部游戏</a></nav></div></footer>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
