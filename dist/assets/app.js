@@ -11,15 +11,15 @@ const games = [
     summary: '潜入被封锁的港区，切断三处中继，在机械守卫围攻下完成撤离。',
   },
   {
-    slug: 'coming-1',
-    title: '第二款游戏',
-    subtitle: 'NEXT DROP',
-    status: 'planning',
-    playPath: null,
-    cover: '/assets/cover-next.svg',
-    coverAlt: '第二款游戏即将上线的抽象海报',
-    category: '即将上线',
-    summary: '新作品正在筹备。内容确认前不提供可玩入口。',
+    slug: 'return-walk',
+    title: '回程信标',
+    subtitle: 'RETURN BEACON',
+    status: 'published',
+    playPath: '/play/return-walk/',
+    cover: '/assets/cover-return-walk.svg',
+    coverAlt: '回程信标的原创夜间信标海报封面',
+    category: '节奏街机',
+    summary: '用三次节奏校准点亮信标，把光点从远端带回起点。',
   },
   {
     slug: 'coming-2',
@@ -132,6 +132,11 @@ function initializeGamePlayer() {
   const exitButton = document.querySelector('#exit-game');
   const statusNode = document.querySelector('#stage-status');
   const playPath = stage.dataset.playPath || '/play/jimao/';
+  const gameId = stage.dataset.gameId || 'jimao';
+  const gameTitle = stage.dataset.gameTitle || '几猫国产3A大作';
+  const loadHint = gameId === 'jimao'
+    ? '资源已加载。点击游戏画面开始操作；若长时间黑屏，请确认浏览器支持 WebGL。'
+    : '资源已加载。点击画面、按钮或按空格即可落步。';
   let frame = null;
   let loadTimer = null;
 
@@ -152,14 +157,14 @@ function initializeGamePlayer() {
     if (overlay) overlay.hidden = true;
     frame = document.createElement('iframe');
     frame.id = 'game-frame';
-    frame.title = '几猫国产3A大作游戏画面';
+    frame.title = `${gameTitle}游戏画面`;
     frame.src = playPath;
     frame.allow = 'fullscreen; gamepad; autoplay; pointer-lock';
     frame.allowFullscreen = true;
     frame.setAttribute('allowpaymentrequest', 'false');
     frame.setAttribute('referrerpolicy', 'same-origin');
     frame.addEventListener('load', () => {
-      setStatus('资源已加载。点击游戏画面开始操作；若长时间黑屏，请确认浏览器支持 WebGL。');
+      setStatus(loadHint);
       if (loadTimer) window.clearTimeout(loadTimer);
       loadTimer = null;
     });
@@ -168,7 +173,7 @@ function initializeGamePlayer() {
       setStatus('加载时间较长，通常是首次初始化 WebGL。可点击“重新加载”重试。');
     }, 15000);
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'game_play_click', game_id: 'jimao' });
+    window.dataLayer.push({ event: 'game_play_click', game_id: gameId });
   };
 
   const showIdle = () => {
@@ -191,7 +196,7 @@ function initializeGamePlayer() {
   exitButton?.addEventListener('click', showIdle);
   window.addEventListener('pagehide', clearFrame, { once: true });
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'game_detail_view', game_id: 'jimao' });
+  window.dataLayer.push({ event: 'game_detail_view', game_id: gameId });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

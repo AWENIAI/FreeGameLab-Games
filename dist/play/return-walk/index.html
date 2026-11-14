@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>回程信标｜原创小游戏</title>
+    <style>
+      :root { color-scheme: dark; --ink: #f4f7ff; --dim: #9ba9c4; --warm: #ffb45c; --mint: #59e1b8; }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #070b14; }
+      body { color: var(--ink); font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; }
+      #scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: manipulation; }
+      .hud { position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(14px, 3vw, 28px); }
+      .hud-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+      .badge { padding: 7px 11px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: rgba(8,13,24,.68); color: var(--dim); font-size: 12px; letter-spacing: .08em; }
+      .score { text-align: right; font-size: clamp(13px, 2.4vw, 16px); line-height: 1.45; }
+      .score strong { color: var(--warm); font-size: 1.3em; }
+      .hud-bottom { display: grid; place-items: center; gap: 10px; }
+      #message { min-height: 1.5em; color: var(--warm); font-weight: 800; text-align: center; text-shadow: 0 2px 16px #000; }
+      #help { color: var(--dim); font-size: clamp(12px, 2.3vw, 15px); text-align: center; }
+      button { pointer-events: auto; min-height: 48px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--warm); color: #15100a; font: 800 15px/1 inherit; cursor: pointer; box-shadow: 0 10px 34px rgba(255,180,92,.26); }
+      button:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; }
+      button[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <canvas id="scene" aria-label="回程信标游戏画面"></canvas>
+    <div class="hud">
+      <div class="hud-top">
+        <span class="badge">RETURN BEACON · ORIGINAL</span>
+        <div class="score"><strong id="step-count">0 / 3</strong><br /><span id="clock">准备回程</span></div>
+      </div>
+      <div class="hud-bottom">
+        <div id="message" role="status" aria-live="polite">把光点带回起点</div>
+        <button id="walk-action" data-testid="walk-action" type="button">开始回程</button>
+        <div id="help">点击按钮或按空格，在移动光圈靠近信标时落步</div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const canvas = document.querySelector('#scene');
+        const context = canvas.getContext('2d');
+        const action = document.querySelector('#walk-action');
+        const message = document.querySelector('#message');
+        const help = document.querySelector('#help');
+        const stepCount = document.querySelector('#step-count');
+        const clock = document.querySelector('#clock');
+        const state = {
+          phase: 'idle',
+          steps: 0,
+          cursor: 0,
+          speed: 0.017,
+          startedAt: 0,
+          elapsed: 0,
+          safeCenter: 0.5,
+          safeWidth: 0.18,
+          pulse: 0,
+        };
+        window.__returnWalkState = state;
+        let width = 0;
+        let height = 0;
+        let ratio = 1;
+
+        function resize() {
+          ratio = Math.min(window.devicePixelRatio || 1, 2);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.round(width * ratio);
+          canvas.height = Math.round(height * ratio);
+          canvas.style.width = `${width}px`;
+          canvas.style.height = `${height}px`;
+          context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        }
+
+        function roundedRect(x, y, rectWidth, rectHeight, radius) {
+          context.beginPath();
+          context.roundRect(x, y, rectWidth, rectHeight, radius);
+        }
+
+        function drawScene(time) {
+          const delta = Math.min(34, time - (drawScene.lastTime || time));
+          drawScene.lastTime = time;
+          if (state.phase === 'playing') {
+            state.cursor = (state.cursor + delta * state.speed / 1000) % 2;
+            state.elapsed = (performance.now() - state.startedAt) / 1000;
+            clock.textContent = `${state.elapsed.toFixed(1)} 秒`;
+          }
+          state.pulse = (state.pulse + delta / 900) % 1;
+
+          context.clearRect(0, 0, width, height);
+          const gradient = context.createLinearGradient(0, 0, width, height);
+          gradient.addColorStop(0, '#101a32');
+          gradient.addColorStop(0.55, '#0a1020');
+          gradient.addColorStop(1, '#05070d');
+          context.fillStyle = gradient;
+          context.fillRect(0, 0, width, height);
+
+          context.strokeStyle = 'rgba(111, 145, 220, .10)';
+          context.lineWidth = 1;
+          const grid = Math.max(34, Math.min(64, width / 8));
+          for (let x = 0; x < width; x += grid) {
+            context.beginPath(); context.moveTo(x, 0); context.lineTo(x, height); context.stroke();
+          }
+          for (let y = 0; y < height; y += grid) {
+            context.beginPath(); context.moveTo(0, y); context.lineTo(width, y); context.stroke();
+          }
+
+          const centerY = height * 0.46;
+          const railWidth = Math.min(width * 0.82, 660);
+          const left = (width - railWidth) / 2;
+          const glow = context.createRadialGradient(width / 2, centerY, 0, width / 2, centerY, railWidth * 0.7);
+          glow.addColorStop(0, 'rgba(89, 225, 184, .14)');
+          glow.addColorStop(1, 'rgba(89, 225, 184, 0)');
+          context.fillStyle = glow;
+          context.fillRect(0, centerY - railWidth * 0.6, width, railWidth * 1.2);
+
+          context.strokeStyle = 'rgba(220, 232, 255, .28)';
+          context.lineWidth = 2;
+          context.beginPath();
+          context.moveTo(left, centerY);
+          context.lineTo(left + railWidth, centerY);
+          context.stroke();
+
+          const beaconX = left + railWidth * state.safeCenter;
+          const safePixels = railWidth * state.safeWidth;
+          const safeGradient = context.createLinearGradient(beaconX - safePixels / 2, 0, beaconX + safePixels / 2, 0);
+          safeGradient.addColorStop(0, 'rgba(89,225,184,0)');
+          safeGradient.addColorStop(.5, 'rgba(89,225,184,.38)');
+          safeGradient.addColorStop(1, 'rgba(89,225,184,0)');
+          context.fillStyle = safeGradient;
+          roundedRect(beaconX - safePixels / 2, centerY - 30, safePixels, 60, 30);
+          context.fill();
+          context.strokeStyle = '#59e1b8';
+          context.lineWidth = 3;
+          context.beginPath();
+          context.moveTo(beaconX, centerY - 42);
+          context.lineTo(beaconX, centerY + 42);
+          context.stroke();
+
+          const markerX = left + railWidth * (state.cursor <= 1 ? state.cursor : 2 - state.cursor);
+          const markerRadius = 11 + Math.sin(state.pulse * Math.PI * 2) * 2;
+          context.fillStyle = '#ffb45c';
+          context.shadowBlur = 28;
+          context.shadowColor = '#ffb45c';
+          context.beginPath();
+          context.arc(markerX, centerY, markerRadius, 0, Math.PI * 2);
+          context.fill();
+          context.shadowBlur = 0;
+
+          context.fillStyle = 'rgba(245,247,251,.9)';
+          context.font = `800 ${Math.max(13, Math.min(18, width / 28))}px system-ui, sans-serif`;
+          context.textAlign = 'center';
+          context.fillText('起点', left, centerY + 70);
+          context.fillText('回程目标', left + railWidth, centerY + 70);
+
+          for (let index = 0; index < 3; index += 1) {
+            const dotX = left + 20 + index * 22;
+            const active = index < state.steps;
+            context.fillStyle = active ? '#59e1b8' : 'rgba(255,255,255,.2)';
+            context.beginPath();
+            context.arc(dotX, height - 92, 6, 0, Math.PI * 2);
+            context.fill();
+          }
+          requestAnimationFrame(drawScene);
+        }
+
+        function begin() {
+          state.phase = 'playing';
+          state.steps = 0;
+          state.cursor = 0;
+          state.speed = 0.34;
+          state.startedAt = performance.now();
+          state.elapsed = 0;
+          state.safeCenter = 0.48;
+          state.safeWidth = 0.20;
+          stepCount.textContent = '0 / 3';
+          clock.textContent = '0.0 秒';
+          message.textContent = '光圈靠近绿色信标时落步';
+          help.textContent = '三次校准即可回到起点；越到后面节奏越快';
+          action.hidden = true;
+        }
+
+        function finish(won) {
+          state.phase = won ? 'won' : 'lost';
+          action.hidden = false;
+          action.textContent = won ? '再走一次' : '重新回程';
+          message.textContent = won ? `回程完成，用时 ${state.elapsed.toFixed(1)} 秒` : '偏离信标，回程重置';
+          help.textContent = won ? '你已把光点带回起点，可以挑战更快节奏' : '等移动光圈靠近绿色信标时再落步';
+          if (!won) {
+            state.steps = 0;
+            stepCount.textContent = '0 / 3';
+          }
+        }
+
+        function takeStep() {
+          if (state.phase !== 'playing') {
+            begin();
+            return;
+          }
+          const cursor = state.cursor <= 1 ? state.cursor : 2 - state.cursor;
+          const distance = Math.abs(cursor - state.safeCenter);
+          if (distance <= state.safeWidth / 2) {
+            state.steps += 1;
+            stepCount.textContent = `${state.steps} / 3`;
+            state.speed = Math.min(0.9, state.speed + 0.14);
+            state.safeWidth = Math.max(0.10, state.safeWidth - 0.028);
+            state.safeCenter = 0.34 + Math.random() * 0.42;
+            state.cursor = 0;
+            message.textContent = state.steps === 3 ? '信标已全部点亮' : `第 ${state.steps} 步校准成功`;
+            if (state.steps === 3) finish(true);
+          } else {
+            finish(false);
+          }
+        }
+
+        action.addEventListener('pointerdown', (event) => {
+          event.preventDefault();
+          takeStep();
+        });
+        canvas.addEventListener('pointerdown', takeStep);
+        window.addEventListener('keydown', (event) => {
+          if (event.code === 'Space' || event.code === 'Enter') {
+            event.preventDefault();
+            takeStep();
+          }
+        });
+        window.addEventListener('resize', resize);
+        resize();
+        requestAnimationFrame(drawScene);
+      })();
+    </script>
+  </body>
+</html>
