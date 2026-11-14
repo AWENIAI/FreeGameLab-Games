@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18123d"/><stop offset="1" stop-color="#07090d"/></linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7c6cff" stop-opacity="0"/><stop offset=".5" stop-color="#a997ff" stop-opacity=".7"/><stop offset="1" stop-color="#7c6cff" stop-opacity="0"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#9c8cff" stroke-opacity=".16" stroke-width="2"/></pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <rect width="600" height="800" fill="url(#grid)"/>
+  <circle cx="300" cy="350" r="186" fill="none" stroke="#7c6cff" stroke-opacity=".7" stroke-width="4"/>
+  <circle cx="300" cy="350" r="132" fill="#110e2a" stroke="#c6baff" stroke-opacity=".65" stroke-width="2"/>
+  <path d="M0 362h600" stroke="url(#beam)" stroke-width="72"/>
+  <path d="M232 350l48-48 48 48-48 48zM184 350h40m152 0h40" fill="none" stroke="#d8cfff" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+  <g font-family="PingFang SC, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#f5f7fb">
+    <text x="300" y="96" font-size="22" font-weight="800" letter-spacing="8" fill="#b9aaff">NEXT DROP</text>
+    <text x="300" y="632" font-size="54" font-weight="900" letter-spacing="4">第二款游戏</text>
+    <text x="300" y="688" font-size="24" font-weight="700" fill="#a7afbf">正在筹备 · 不提供假入口</text>
+  </g>
+  <rect x="44" y="44" width="126" height="32" rx="16" fill="#18123d" stroke="#8f7cff"/>
+  <text x="107" y="65" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#d8cfff" text-anchor="middle">即将上线</text>
+</svg>
