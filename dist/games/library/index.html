@@ -3,32 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GameHub 游戏库目录入口：查看当前已上线与规划中的竖版游戏海报。" />
+    <meta name="description" content="GameHub：点击竖版游戏卡片即可进入详情游玩。" />
     <meta name="theme-color" content="#07090d" />
-    <title>游戏库｜GameHub</title>
+    <title>GameHub</title>
     <link rel="canonical" href="/games/" />
     <link rel="stylesheet" href="/assets/site.css" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   </head>
-  <body>
-    <a class="skip-link" href="#main">跳到主要内容</a>
-    <header class="site-header">
-      <div class="shell nav">
-        <a class="brand" href="/" aria-label="GameHub 首页"><span class="brand-mark" aria-hidden="true">G</span><span>GameHub</span></a>
-        <nav class="site-nav" aria-label="主导航"><a href="/">首页</a><a href="/games/">游戏库</a><a href="/games/jimao/">首款游戏</a><a href="/about/">关于</a></nav>
-        <div class="nav-actions"><span class="nav-pill">无需登录</span><a class="header-cta" href="/games/jimao/">开始体验</a></div>
-      </div>
+  <body class="home-minimal">
+    <header class="minimal-header" data-minimal-home>
+      <a class="site-name" href="/" aria-label="GameHub">GameHub</a>
     </header>
-    <main class="shell page" id="main">
-      <nav class="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>/</span><span>游戏库</span></nav>
-      <h1 class="page-title">游戏库</h1>
-      <p class="page-subtitle">当前《几猫国产3A大作》与原创《回程信标》可直接游玩；其余卡片仅展示真实筹备状态。</p>
-      <label class="sr-only" for="game-search">搜索游戏</label>
-      <input id="game-search" class="button secondary" type="search" placeholder="搜索游戏名称、类型或简介" style="width:min(100%,420px);margin-top:24px;background:#10141b;color:var(--color-text);text-align:left" />
-      <div class="library-grid" data-game-grid aria-label="全部游戏"></div>
-      <p id="empty-state" hidden class="page-subtitle">没有匹配的游戏，试着清空搜索词。</p>
-    </main>
-    <footer class="site-footer"><div class="shell footer-inner"><div><strong>GameHub</strong><span> · 轻量 HTML5 小游戏门户预览</span></div><nav aria-label="页脚导航"><a href="/about/">关于</a><a href="/privacy/">隐私</a><a href="/terms/">条款</a><a href="/games/">游戏库</a></nav></div></footer>
+    <main class="minimal-wall" id="main" data-game-grid aria-label="游戏入口"></main>
     <script src="/assets/app.js" defer></script>
   </body>
 </html>

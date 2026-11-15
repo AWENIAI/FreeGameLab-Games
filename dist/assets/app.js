@@ -2,46 +2,14 @@ const games = [
   {
     slug: 'jimao',
     title: '几猫国产3A大作',
-    subtitle: 'JIMAO BLOCKBUSTER',
-    status: 'published',
     playPath: '/play/jimao/',
     cover: '/assets/cover-jimao.svg',
-    coverAlt: '几猫国产3A大作的原创港区海报封面',
-    category: '3D 动作',
-    summary: '潜入被封锁的港区，切断三处中继，在机械守卫围攻下完成撤离。',
   },
   {
     slug: 'return-walk',
     title: '回程信标',
-    subtitle: 'RETURN BEACON',
-    status: 'published',
     playPath: '/play/return-walk/',
     cover: '/assets/cover-return-walk.svg',
-    coverAlt: '回程信标的原创夜间信标海报封面',
-    category: '节奏街机',
-    summary: '用三次节奏校准点亮信标，把光点从远端带回起点。',
-  },
-  {
-    slug: 'coming-2',
-    title: '第三款游戏',
-    subtitle: 'NEW WORLD',
-    status: 'planning',
-    playPath: null,
-    cover: '/assets/cover-arcade.svg',
-    coverAlt: '第三款游戏开发中的抽象霓虹海报',
-    category: '开发中',
-    summary: '另一个原创玩法方向正在验证，完成后再加入游戏库。',
-  },
-  {
-    slug: 'coming-3',
-    title: '更多内容',
-    subtitle: 'STAY TUNED',
-    status: 'planning',
-    playPath: null,
-    cover: '/assets/cover-mystery.svg',
-    coverAlt: '更多游戏即将公布的抽象海报',
-    category: '规划中',
-    summary: '保持深色的海报墙节奏，为后续真实上线游戏预留位置。',
   },
 ];
 
@@ -56,26 +24,11 @@ function escapeHtml(value) {
 }
 
 function renderGameCard(game, placement) {
-  const published = game.status === 'published' && game.playPath;
-  const href = published ? `/games/${game.slug}/` : null;
-  const tagName = href ? 'a' : 'article';
-  const attributes = href
-    ? ` href="${escapeHtml(href)}" data-testid="game-card-${escapeHtml(game.slug)}" data-placement="${escapeHtml(placement)}" aria-label="进入${escapeHtml(game.title)}详情"`
-    : ` aria-label="${escapeHtml(game.title)}：${escapeHtml(game.category)}"`;
-  const status = published ? '可立即游玩' : game.category;
-  const action = published ? '进入详情 <span aria-hidden="true">→</span>' : `${escapeHtml(game.category)} <span aria-hidden="true">·</span>`;
   return `
-    <${tagName} class="game-card ${published ? 'playable' : 'planning'}"${attributes}>
-      <img src="${escapeHtml(game.cover)}" alt="${escapeHtml(game.coverAlt)}" loading="lazy" />
-      <span class="card-status ${published ? 'live' : 'muted'}">${escapeHtml(status)}</span>
-      <span class="card-corner" aria-hidden="true">${published ? '▶' : '+'}</span>
-      <div class="card-caption">
-        <div class="card-kicker">${escapeHtml(game.subtitle)}</div>
-        <h3>${escapeHtml(game.title)}</h3>
-        <p>${escapeHtml(game.summary)}</p>
-        <span class="card-action">${action}</span>
-      </div>
-    </${tagName}>`;
+    <a class="game-card home-card" href="/games/${escapeHtml(game.slug)}/" data-testid="game-card-${escapeHtml(game.slug)}" data-placement="${escapeHtml(placement)}" aria-label="${escapeHtml(game.title)}">
+      <img src="${escapeHtml(game.cover)}" alt="" loading="lazy" />
+      <span class="card-title">${escapeHtml(game.title)}</span>
+    </a>`;
 }
 
 function renderCards(container, placement) {
@@ -94,31 +47,6 @@ function initializeCardTracking() {
       });
     });
   });
-}
-
-function initializeLibraryControls() {
-  const grid = document.querySelector('[data-game-grid]');
-  const input = document.querySelector('#game-search');
-  const empty = document.querySelector('#empty-state');
-  if (!grid || !input || !empty) return;
-
-  const render = () => {
-    const query = input.value.trim().toLowerCase();
-    const filtered = games.filter((game) =>
-      `${game.title} ${game.subtitle} ${game.category} ${game.summary}`.toLowerCase().includes(query)
-    );
-    grid.innerHTML = filtered.map((game) => renderGameCard(game, 'library')).join('');
-    empty.hidden = filtered.length > 0;
-    const params = new URLSearchParams();
-    if (query) params.set('q', input.value.trim());
-    window.history.replaceState({}, '', params.toString() ? `?${params}` : window.location.pathname);
-    initializeCardTracking();
-  };
-
-  input.addEventListener('input', render);
-  const initialQuery = new URLSearchParams(window.location.search).get('q');
-  if (initialQuery) input.value = initialQuery;
-  render();
 }
 
 function initializeGamePlayer() {
@@ -203,6 +131,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCards(document.querySelector('[data-poster-rail]'), 'homepage');
   renderCards(document.querySelector('[data-game-grid]'), 'library');
   initializeCardTracking();
-  initializeLibraryControls();
   initializeGamePlayer();
 });

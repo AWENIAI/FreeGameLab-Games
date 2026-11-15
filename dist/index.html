@@ -3,100 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="GameHub 深色小游戏门户：免登录、无需下载，点击竖版游戏海报进入详情即可游玩。" />
+    <meta name="description" content="GameHub：点击竖版游戏卡片即可进入详情游玩。" />
     <meta name="theme-color" content="#07090d" />
     <meta name="robots" content="index,follow" />
-    <title>GameHub｜深色小游戏门户</title>
+    <title>GameHub</title>
     <link rel="canonical" href="/" />
     <link rel="stylesheet" href="/assets/site.css" />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="GameHub｜深色小游戏门户" />
-    <meta property="og:description" content="免登录、无需下载，点击竖版游戏海报进入详情即可游玩。" />
+    <meta property="og:title" content="GameHub" />
+    <meta property="og:description" content="点击竖版游戏卡片即可进入详情游玩。" />
     <meta property="og:image" content="/assets/cover-jimao.svg" />
   </head>
-  <body>
-    <a class="skip-link" href="#main">跳到主要内容</a>
-    <header class="site-header">
-      <div class="shell nav">
-        <a class="brand" href="/" aria-label="GameHub 首页"><span class="brand-mark" aria-hidden="true">G</span><span>GameHub</span></a>
-        <nav class="site-nav" aria-label="主导航">
-          <a href="/">首页</a>
-          <a href="/games/">游戏库</a>
-          <a href="/games/jimao/">首款游戏</a>
-          <a href="/about/">关于</a>
-        </nav>
-        <div class="nav-actions">
-          <span class="nav-pill">无需登录</span>
-          <a class="header-cta" href="/games/jimao/">开始体验</a>
-        </div>
-      </div>
+  <body class="home-minimal">
+    <header class="minimal-header" data-minimal-home>
+      <a class="site-name" href="/" aria-label="GameHub">GameHub</a>
     </header>
-
-    <main id="main">
-      <section class="shell hero" aria-labelledby="home-title">
-        <div>
-          <p class="eyebrow">HTML5 games · no account · instant play</p>
-          <h1 id="home-title">打开即玩的<br /><span class="accent">深色游戏墙</span></h1>
-          <p class="hero-lead">不用注册，不用下载。点开一张竖版海报，进入游戏详情，在独立游玩层里直接启动港区动作或极简回程小游戏。</p>
-          <div class="hero-actions">
-            <a class="button primary" href="/games/jimao/" data-testid="hero-play">进入几猫国产3A大作 <span aria-hidden="true">→</span></a>
-            <a class="button secondary" href="/games/">浏览游戏库</a>
-          </div>
-          <div class="hero-meta" aria-label="平台特点">
-            <span>深色首页</span><span>3:4 竖版海报</span><span>详情页内嵌游玩</span><span>无账号系统</span>
-          </div>
-        </div>
-        <aside class="hero-stat" aria-labelledby="featured-title">
-          <div class="hero-stat-top"><span class="status-dot">两款已上线</span><span>02 / 04</span></div>
-          <h2 id="featured-title">几猫国产3A大作</h2>
-          <p>雨夜港区渗透、三处中继切断、机械守卫追击与撤离。用户提供的单文件 HTML 原样接入，浏览器本地运行。</p>
-          <a class="button primary" href="/games/jimao/">查看游戏详情 <span aria-hidden="true">→</span></a>
-        </aside>
-      </section>
-
-      <section class="shell section" aria-labelledby="posters-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">Featured posters</p><h2 id="posters-title">精选游戏</h2><p>每张卡片均为 3:4 竖版比例，点击可玩卡片进入详情。</p></div>
-          <a class="text-link" href="/games/">查看全部 <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="poster-rail" data-poster-rail aria-label="精选游戏海报">
-          <a class="game-card playable" href="/games/jimao/" data-testid="game-card-jimao" data-placement="homepage" aria-label="进入几猫国产3A大作详情">
-            <img src="/assets/cover-jimao.svg" alt="几猫国产3A大作的原创港区海报封面" />
-            <span class="card-status live">可立即游玩</span><span class="card-corner" aria-hidden="true">▶</span>
-            <div class="card-caption"><div class="card-kicker">JIMAO BLOCKBUSTER</div><h3>几猫国产3A大作</h3><p>潜入被封锁的港区，切断三处中继并完成撤离。</p><span class="card-action">进入详情 <span aria-hidden="true">→</span></span></div>
-          </a>
-          <a class="game-card playable" href="/games/return-walk/" data-testid="game-card-return-walk" data-placement="homepage" aria-label="进入回程信标详情">
-            <img src="/assets/cover-return-walk.svg" alt="回程信标的原创夜间信标海报封面" loading="lazy" />
-            <span class="card-status live">可立即游玩</span><span class="card-corner" aria-hidden="true">▶</span>
-            <div class="card-caption"><div class="card-kicker">RETURN BEACON</div><h3>回程信标</h3><p>三步校准，把光点带回起点。</p><span class="card-action">进入详情 <span aria-hidden="true">→</span></span></div>
-          </a>
-          <article class="game-card planning" aria-label="第三款游戏：开发中">
-            <img src="/assets/cover-arcade.svg" alt="第三款游戏开发中的抽象霓虹海报" loading="lazy" />
-            <span class="card-status muted">开发中</span><span class="card-corner" aria-hidden="true">+</span>
-            <div class="card-caption"><div class="card-kicker">NEW WORLD</div><h3>第三款游戏</h3><p>原创玩法方向正在验证。</p><span class="card-action">开发中 <span aria-hidden="true">·</span></span></div>
-          </article>
-          <article class="game-card planning" aria-label="更多内容：规划中">
-            <img src="/assets/cover-mystery.svg" alt="更多游戏即将公布的抽象海报" loading="lazy" />
-            <span class="card-status muted">规划中</span><span class="card-corner" aria-hidden="true">+</span>
-            <div class="card-caption"><div class="card-kicker">STAY TUNED</div><h3>更多内容</h3><p>完成一款，发布一款。</p><span class="card-action">规划中 <span aria-hidden="true">·</span></span></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="shell feature-strip" aria-label="产品原则">
-        <article class="feature"><strong>真实状态</strong><p>已上线与开发中清晰区分，未发布游戏不显示假的开始按钮。</p></article>
-        <article class="feature"><strong>独立游玩层</strong><p>游戏在同源 iframe 中运行，不把游戏循环塞进平台页面渲染周期。</p></article>
-        <article class="feature"><strong>免登录</strong><p>没有账号、支付、数据库或云端存档；打开页面即可体验。</p></article>
-      </section>
+    <main class="minimal-wall" id="main" data-poster-rail aria-label="游戏入口">
+      <a class="game-card home-card" href="/games/jimao/" data-testid="game-card-jimao" data-placement="homepage" aria-label="几猫国产3A大作">
+        <img src="/assets/cover-jimao.svg" alt="" />
+        <span class="card-title">几猫国产3A大作</span>
+      </a>
+      <a class="game-card home-card" href="/games/return-walk/" data-testid="game-card-return-walk" data-placement="homepage" aria-label="回程信标">
+        <img src="/assets/cover-return-walk.svg" alt="" loading="lazy" />
+        <span class="card-title">回程信标</span>
+      </a>
     </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-inner">
-        <div><strong>GameHub</strong><span> · 轻量 HTML5 小游戏门户预览</span></div>
-        <nav aria-label="页脚导航"><a href="/about/">关于</a><a href="/privacy/">隐私</a><a href="/terms/">条款</a><a href="/games/">游戏库</a></nav>
-      </div>
-    </footer>
     <script src="/assets/app.js" defer></script>
   </body>
 </html>

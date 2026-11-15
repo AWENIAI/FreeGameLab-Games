@@ -18,11 +18,8 @@
   </g>
   <path d="M162 380h-34m20-14-20 14 20 14" fill="none" stroke="#ffd6a3" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
   <g fill="#59e1b8"><circle cx="252" cy="574" r="9"/><circle cx="300" cy="574" r="9"/><circle cx="348" cy="574" r="9"/></g>
-  <g font-family="PingFang SC, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#f5f7fb">
-    <text x="300" y="92" font-size="21" font-weight="800" letter-spacing="9" fill="#8ee7c9">RETURN BEACON</text>
-    <text x="300" y="666" font-size="58" font-weight="900" letter-spacing="6">回程信标</text>
-    <text x="300" y="716" font-size="23" font-weight="700" fill="#a7afbf">三步校准 · 回到起点</text>
+  <g transform="translate(300 700)" fill="none" stroke="#8ee7c9" stroke-width="7" stroke-linecap="round" opacity=".82">
+    <path d="M-82 0h48M34 0h48"/>
+    <path d="M-12-16a22 22 0 1 0 0 32"/>
   </g>
-  <rect x="44" y="44" width="126" height="32" rx="16" fill="#0d1a2a" stroke="#59e1b8"/>
-  <text x="107" y="65" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#a5f4da" text-anchor="middle">可立即游玩</text>
 </svg>
