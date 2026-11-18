@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d182b">
+<meta name="description" content="Race five 3D harbor tracks. Brake for hairpins, pick up a crew at every checkpoint, and jump aboard the last ferry.">
+<title>Last Ferry Chase · Harbor Time Attack</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <script type="module" crossorigin src="./assets/index-qHckFQlC.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Za7YVQbg.css">
+</head>
+<body>
+<main class="page">
+<section id="race" class="race" tabindex="-1" data-view="intro" aria-label="Last Ferry Chase racing game">
+  <div class="scene"></div>
+  <header class="topbar">
+    <a href="https://freegameslab.com/" class="brand">FreeGame<span>Lab</span></a>
+    <div class="tools">
+      <button aria-label="Toggle sound" data-action="sound" title="Sound" aria-pressed="true"><span aria-hidden="true">♪</span></button>
+      <button aria-label="Switch camera" data-action="camera" title="Switch camera · C" hidden><span aria-hidden="true">◉</span></button>
+      <button aria-label="Pause race" data-action="pause" title="Pause · Space" hidden><span aria-hidden="true">Ⅱ</span></button>
+    </div>
+  </header>
+  <div class="intro">
+    <div class="intro-inner">
+      <p class="sub">Last Ferry Chase</p>
+      <h1>Harbor<br><em>Time Attack</em></h1>
+      <p class="intro-rule">Five races against the clock. Pick up three riders per stage and get all 15 onto the last ferry.</p>
+      <button class="primary" data-action="play">Play Free</button>
+      <p class="load-error" data-field="error" role="status" hidden></p>
+    </div>
+  </div>
+  <div class="hud" hidden>
+    <div class="track-hud"><span data-field="stage">Stage 1 / 5</span><strong data-field="track">Dockside 90</strong><div class="dots" aria-label="Checkpoint progress"><span data-gate="0">1</span><span data-gate="1">2</span><span data-gate="2">3</span></div></div>
+    <div class="timer"><span>Time left</span><strong data-field="clock">40.00</strong><div class="clock-rail"><i data-field="rail"></i></div><small data-field="bonus">−0s bonus</small></div>
+    <div class="speed"><strong data-field="speed">0</strong><span>KM/H</span></div>
+    <div class="crew-hud"><span data-field="crew">On board · 0/15</span><div data-field="seats" aria-hidden="true"></div></div>
+    <div class="cue" data-field="cue" role="status">Hold W or ↑ to drive</div>
+    <button class="recover" data-action="recover" aria-label="Recover at last checkpoint" title="Recover · R">↶</button>
+    <div class="pedals">
+      <div><button data-key="left" aria-label="Steer left">‹</button><button data-key="right" aria-label="Steer right">›</button></div>
+      <div><button data-key="brake" aria-label="Brake or reverse">Brake</button><button data-key="gas" aria-label="Accelerate">Gas</button></div>
+    </div>
+  </div>
+  <div class="arrival" hidden>
+    <div><p class="sub">15 riders delivered</p><h2>We made it!</h2></div>
+    <button class="secondary" data-action="results">View results</button>
+  </div>
+  <div class="overlay" hidden>
+    <div class="result" role="dialog" aria-modal="true" aria-labelledby="result-title">
+      <p class="result-meta" data-field="panel-stage"></p>
+      <h2 id="result-title" data-field="panel-title"></h2>
+      <p class="panel-copy" data-field="panel-copy"></p>
+      <div class="result-table" hidden></div>
+      <div class="actions">
+        <button class="primary" data-action="primary">Next stage</button>
+        <button class="secondary" data-action="restart">Restart all stages</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="below">
+  <div>
+    <h2>How to race</h2>
+    <p>Hold <kbd>W</kbd> or <kbd>↑</kbd> to accelerate. Brake with <kbd>S</kbd> or <kbd>↓</kbd>, and steer with <kbd>A</kbd> / <kbd>D</kbd> or the left and right arrows. Use <kbd>R</kbd> to recover, <kbd>T</kbd> to restart all stages, <kbd>C</kbd> to change camera and <kbd>SPACE</kbd> to pause. On touchscreens, use the pedals.</p>
+  </div>
+  <div>
+    <h2>Beat the clock</h2>
+    <p>Each checkpoint picks up <strong>one rider</strong> and subtracts <strong>2 seconds</strong> from your time. Pick up all three riders before you finish each stage. Reach the ferry in Stage 5 for the crew celebration.</p>
+  </div>
+</section>
+</main>
+</body>
+</html>

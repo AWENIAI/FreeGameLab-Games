@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /play/
-Disallow: /api/
-
-Sitemap: /sitemap.xml
